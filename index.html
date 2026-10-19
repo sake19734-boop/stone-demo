@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Каменный двор</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Демонстрационный каталог натурального камня: балясины, перила, тумбы, облицовка, мрамор и гранит.">
+<meta property="og:title" content="Каменный двор">
+<meta property="og:description" content="Демонстрационный каталог натурального камня. Все названия, адреса и цены вымышлены.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231d2124'/%3E%3Cpath d='M9 8h14v3H9zM11 11h10v11H11zM9 22h14v3H9z' fill='%23d7ccb4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Oswald:wght@500;600&display=swap">
+<style>
+/* Макет: каталог вперёд. Герой заканчивается балюстрадой из силуэтов балясин,
+   это единственный декоративный приём, остальное строгая сетка. */
+:root{
+  --bg:#f1f1ee; --surface:#ffffff; --fg:#1d2124; --muted:#596066; --line:#d8d9d3;
+  --accent:#7d5a14; --btn-bg:#1d2124; --btn-fg:#ffffff;
+  --wa:#157a43; --wa-fg:#ffffff;
+  --stone:#d7ccb4; --stone-d:#bdb092; --stone-line:#8d8368; --tile:#e5e3dc;
+  --demo-bg:#1d2124; --demo-fg:#f1f1ee;
+  --f-display:'Oswald','Arial Narrow',Impact,sans-serif;
+  --f-body:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --r:6px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181a; --surface:#1e2225; --fg:#eceae4; --muted:#a3a8ac; --line:#32383c;
+    --accent:#d9b25a; --btn-bg:#eceae4; --btn-fg:#15181a;
+    --stone:#cbbd9c; --stone-d:#a99b7b; --stone-line:#6e6650; --tile:#262b2f;
+    --demo-bg:#0d0f10; --demo-fg:#d8d6cf; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181a; --surface:#1e2225; --fg:#eceae4; --muted:#a3a8ac; --line:#32383c;
+  --accent:#d9b25a; --btn-bg:#eceae4; --btn-fg:#15181a;
+  --stone:#cbbd9c; --stone-d:#a99b7b; --stone-line:#6e6650; --tile:#262b2f;
+  --demo-bg:#0d0f10; --demo-fg:#d8d6cf; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-padding-top:84px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.55 var(--f-body);-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+h1,h2,h3{margin:0;font-family:var(--f-display);font-weight:500;line-height:1.1;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* камень в SVG */
+.s{fill:var(--stone);stroke:var(--stone-line);stroke-width:1.2;stroke-linejoin:round}
+.sd{fill:var(--stone-d);stroke:var(--stone-line);stroke-width:1.2;stroke-linejoin:round}
+.ln{fill:none;stroke:var(--stone-line);stroke-width:1.2;stroke-linecap:round}
+
+/* кнопки */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border:1.5px solid transparent;border-radius:var(--r);font:700 .95rem/1 var(--f-body);text-decoration:none;cursor:pointer}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-main{background:var(--btn-bg);color:var(--btn-fg)}
+.btn-wa{background:var(--wa);color:var(--wa-fg)}
+.btn-line{background:transparent;color:var(--fg);border-color:var(--fg)}
+.btn-sm{min-height:38px;padding:0 12px;font-size:.85rem}
+
+/* демо-плашка */
+.demo{background:var(--demo-bg);color:var(--demo-fg);font-size:.8rem;line-height:1.4;padding-block:8px}
+
+/* шапка */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-height:64px;padding-block:8px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+.logo svg{width:32px;height:32px;flex:none}
+.logo span{font:500 1rem/1 var(--f-display);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+nav{order:10;flex-basis:100%;display:none}
+header.open nav{display:block}
+nav ul{list-style:none;margin:0;padding:0 0 8px}
+nav a{display:block;padding:12px 2px;text-decoration:none;font-weight:700;border-top:1px solid var(--line)}
+.burger{width:44px;height:44px;display:inline-grid;place-content:center;gap:5px;background:transparent;border:1.5px solid var(--line);border-radius:var(--r);color:var(--fg);cursor:pointer}
+.burger i{display:block;width:20px;height:2px;background:currentColor}
+@media (max-width:440px){.wa-t{display:none}.bar .btn-sm{padding:0 12px}}
+@media (min-width:900px){
+  nav{order:0;flex-basis:auto;display:block}
+  nav ul{display:flex;gap:20px;padding:0}
+  nav a{border:0;padding:8px 2px;font-size:.92rem}
+  nav a:hover{color:var(--accent)}
+  .burger{display:none}
+  .logo{margin-right:24px}
+  .bar{flex-wrap:nowrap}
+  nav{margin-right:auto}
+}
+
+/* секции */
+section{padding-block:56px}
+.head{display:grid;gap:10px;margin-bottom:28px;max-width:60ch}
+.head h2{font-size:clamp(1.7rem,4.5vw,2.4rem);text-transform:uppercase;letter-spacing:.03em}
+.head p{color:var(--muted)}
+
+/* герой */
+.hero{padding-top:40px;padding-bottom:0}
+.hero h1{font-size:clamp(2.1rem,7vw,3.8rem);text-transform:uppercase;letter-spacing:.02em;max-width:20ch}
+.hero .lead{margin-top:18px;max-width:54ch;font-size:1.05rem;color:var(--muted)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 24px;list-style:none;margin:26px 0 0;padding:0;font-size:.9rem;font-weight:700}
+.facts li{display:flex;align-items:center;gap:8px}
+.facts li::before{content:"";width:8px;height:8px;background:var(--stone-line);flex:none}
+.balustrade{display:block;width:100%;height:96px;margin-top:36px}
+
+/* каталог */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{min-height:42px;padding:0 16px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);color:var(--fg);font:700 .9rem/1 var(--f-body);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg)}
+.count{color:var(--muted);font-size:.85rem;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{display:flex;flex-direction:column;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.art{aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;background:var(--tile);border-bottom:1px solid var(--line)}
+.art svg{width:78%;height:78%}
+.cbody{display:flex;flex-direction:column;gap:6px;flex:1;padding:14px 16px 16px;min-width:0}
+.cat{font-size:.72rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.card h3{font-size:1.25rem;letter-spacing:.01em}
+.spec{color:var(--muted);font-size:.9rem}
+.price{margin-top:auto;padding-top:8px;font-weight:800;font-size:1.05rem;font-variant-numeric:tabular-nums}
+.price small{font-weight:500;color:var(--muted);font-size:.85rem}
+.card .btn{align-self:flex-start;margin-top:8px}
+
+/* калькулятор */
+.calc{display:grid;gap:20px;grid-template-columns:1fr}
+@media (min-width:820px){.calc{grid-template-columns:1.1fr .9fr;align-items:start}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;min-width:0}
+.field{display:grid;gap:6px;margin-bottom:16px}
+.field:last-child{margin-bottom:0}
+label{font-weight:700;font-size:.9rem}
+.hint{color:var(--muted);font-size:.8rem}
+input,select{width:100%;min-height:46px;padding:0 12px;border:1.5px solid var(--line);border-radius:var(--r);background:var(--bg);color:var(--fg);font:inherit}
+.row2{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+@media (max-width:420px){.row2{grid-template-columns:1fr}}
+.result .big{font:500 clamp(2rem,7vw,2.8rem)/1.05 var(--f-display);font-variant-numeric:tabular-nums}
+.result .lbl{font-size:.75rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+.result .lbl:first-child{margin-top:0}
+.result .note{margin-top:16px;color:var(--muted);font-size:.85rem}
+.result .btn{margin-top:18px;width:100%}
+
+/* работы */
+.works{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.work{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;min-width:0}
+.work svg{display:block;width:100%;height:auto;background:var(--tile);border-bottom:1px solid var(--line)}
+.work figcaption{padding:12px 16px 14px}
+.work b{display:block;font-weight:800}
+.work span{color:var(--muted);font-size:.85rem}
+
+@media (min-width:820px){.works,.places{grid-template-columns:repeat(3,1fr)}}
+
+/* как заказать */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));counter-reset:st}
+.steps li{counter-increment:st;border-top:3px solid var(--fg);padding-top:14px;min-width:0}
+.steps li::before{content:counter(st);display:block;font:500 2rem/1 var(--f-display);color:var(--accent);margin-bottom:8px}
+.steps b{display:block;margin-bottom:4px}
+.steps span{color:var(--muted);font-size:.92rem}
+
+/* адреса */
+.places{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.place{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;min-width:0}
+.place h3{font-size:1.2rem;margin-bottom:8px}
+.place p{color:var(--muted);font-size:.92rem}
+.place .tel{display:block;margin-top:10px;font-weight:800;font-variant-numeric:tabular-nums}
+.sample{margin-top:16px;color:var(--muted);font-size:.85rem}
+
+/* вопросы */
+.faq{max-width:760px;border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;padding:8px 0;font-weight:800;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:500 1.5rem/1 var(--f-display);color:var(--accent);flex:none}
+details[open] summary::after{content:"\2212"}
+details p{padding:0 0 18px;color:var(--muted);max-width:62ch}
+
+/* финал */
+.final{background:var(--btn-bg);color:var(--btn-fg)}
+.final .wrap{display:grid;gap:16px;justify-items:start}
+.final h2{font-size:clamp(1.7rem,5vw,2.6rem);text-transform:uppercase;letter-spacing:.03em;max-width:20ch}
+.final p{max-width:52ch;opacity:.85}
+footer{padding-block:28px;color:var(--muted);font-size:.85rem}
+footer p+p{margin-top:6px}
+</style>
+</head>
+<body>
+<div class="demo"><div class="wrap">Демонстрационный сайт. Название, адреса, телефон и цены вымышлены, всё показано как образец каталога.</div></div>
+
+<header id="top">
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="#top" aria-label="Каменный двор, наверх">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="var(--btn-bg)"/><path d="M9 8h14v3H9zM11 11h10v11H11zM9 22h14v3H9z" fill="var(--stone)"/></svg>
+        <span>Каменный двор</span>
+      </a>
+      <nav id="menu" aria-label="Разделы сайта">
+        <ul>
+          <li><a href="#catalog">Каталог</a></li>
+          <li><a href="#calc">Расчёт</a></li>
+          <li><a href="#works">Работы</a></li>
+          <li><a href="#order">Как заказать</a></li>
+          <li><a href="#places">Адреса</a></li>
+          <li><a href="#faq">Вопросы</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-wa btn-sm" data-wa="Здравствуйте! Хочу уточнить по каталогу." href="#" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-.8.8c-.8-.4-1.600-1.200-2-2l.8-.8-1-2z"/></svg>
+        <span class="wa-t">WhatsApp</span>
+      </a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Открыть меню"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <h1>Камень для лестниц, фасадов и ограждений</h1>
+    <p class="lead">Балясины, перила, тумбы, облицовочный камень, мрамор и гранит. Размеры и цены «от» в одном каталоге, расчёт лестницы онлайн и запись на замер через WhatsApp.</p>
+    <div class="cta">
+      <a class="btn btn-main" href="#catalog">Смотреть каталог</a>
+      <a class="btn btn-wa" data-wa="Здравствуйте! Хочу записаться на замер." href="#" target="_blank" rel="noopener">Записаться на замер</a>
+    </div>
+    <ul class="facts">
+      <li>Замер на объекте</li>
+      <li>Доставка по городу</li>
+      <li>Монтаж под ключ</li>
+    </ul>
+    <svg class="balustrade" role="img" aria-label="Балюстрада из каменных балясин" width="100%" height="96">
+      <defs>
+        <pattern id="bal" width="34" height="72" patternUnits="userSpaceOnUse">
+          <rect class="s" x="11" y="0" width="12" height="4"/>
+          <path class="s" d="M14 4Q14 12 16 16H18Q20 12 20 4Z"/>
+          <ellipse class="s" cx="17" cy="30" rx="9" ry="14"/>
+          <rect class="s" x="13" y="44" width="8" height="8"/>
+          <path class="s" d="M12 52H22L24 64H10Z"/>
+          <rect class="s" x="9" y="64" width="16" height="8"/>
+        </pattern>
+      </defs>
+      <rect class="sd" x="0" y="0" width="100%" height="12" rx="2"/>
+      <rect x="0" y="12" width="100%" height="72" fill="url(#bal)"/>
+      <rect class="sd" x="0" y="84" width="100%" height="12" rx="2"/>
+    </svg>
+  </div>
+</section>
+
+<section id="catalog">
+  <div class="wrap">
+    <div class="head">
+      <h2>Каталог</h2>
+      <p>Цены указаны «от» за единицу и могут меняться в акциях. Актуальную цену и наличие подтверждает менеджер в WhatsApp.</p>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Категории"></div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section id="calc">
+  <div class="wrap">
+    <div class="head">
+      <h2>Сколько балясин нужно</h2>
+      <p>Выберите балясину, введите длину ограждения и шаг. Расчёт ориентировочный, точную смету даст замер.</p>
+    </div>
+    <div class="calc">
+      <form class="panel" id="calcForm" autocomplete="off">
+        <div class="field">
+          <label for="cType">Балясина</label>
+          <select id="cType"></select>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="cLen">Длина ограждения, м</label>
+            <input id="cLen" type="number" inputmode="decimal" min="0.5" max="200" step="0.1" value="6">
+          </div>
+          <div class="field">
+            <label for="cPitch">Шаг между осями, см</label>
+            <input id="cPitch" type="number" inputmode="numeric" min="8" max="30" step="1" value="14">
+          </div>
+        </div>
+        <p class="hint">Шаг 12–16 см чаще всего подходит для лестниц и террас.</p>
+      </form>
+      <div class="panel result" aria-live="polite">
+        <div class="lbl">Количество</div>
+        <div class="big" id="rCount">—</div>
+        <div class="lbl">Балясины от</div>
+        <div class="big" id="rSum">—</div>
+        <p class="note">Без учёта тумб, поручня и монтажа. Для расчёта они считаются отдельно.</p>
+        <a class="btn btn-wa" id="rWa" href="#" target="_blank" rel="noopener">Отправить расчёт в WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <div class="head">
+      <h2>Наши работы</h2>
+      <p>Образцы раздела. На рабочем сайте здесь будут фото и видео готовых объектов компании.</p>
+    </div>
+    <div class="works" id="works-grid"></div>
+  </div>
+</section>
+
+<section id="order">
+  <div class="wrap">
+    <div class="head"><h2>Как заказать</h2></div>
+    <ol class="steps">
+      <li><b>Напишите в WhatsApp</b><span>Пришлите фото лестницы или фасада, либо размеры, если они уже есть.</span></li>
+      <li><b>Замер</b><span>Специалист приезжает на объект и измеряет всё сам.</span></li>
+      <li><b>Расчёт</b><span>Вы получаете смету: что нужно, сколько штук, сумма и сроки.</span></li>
+      <li><b>Изготовление и монтаж</b><span>Привозим материал и устанавливаем. Можно заказать только материал.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="places">
+  <div class="wrap">
+    <div class="head"><h2>Адреса</h2></div>
+    <div class="places">
+      <div class="place"><h3>Главный склад</h3><p>ул. Образцовая, 1</p><p>Ежедневно 09:00–19:00</p><span class="tel">+7 (700) 000-00-00</span></div>
+      <div class="place"><h3>Шоурум</h3><p>ул. Примерная, 12</p><p>Ежедневно 09:00–19:00</p><span class="tel">+7 (700) 000-00-00</span></div>
+      <div class="place"><h3>Склад 2</h3><p>пр. Тестовый, 5</p><p>Ежедневно 09:00–18:00</p><span class="tel">+7 (700) 000-00-00</span></div>
+    </div>
+    <p class="sample">На рабочем сайте здесь будут настоящие адреса всех точек, график и ссылка на карточку в 2ГИС.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="head"><h2>Вопросы</h2></div>
+    <div class="faq">
+      <details><summary>Как считается количество балясин?</summary><p>Длину ограждения делим на шаг между осями. Для лестницы нужен замер, потому что угол и количество ступеней влияют на итог.</p></details>
+      <details><summary>Можно заказать нестандартный размер?</summary><p>Да, размер и форму обсуждают с менеджером. Срок и цена зависят от изделия.</p></details>
+      <details><summary>Вы делаете монтаж?</summary><p>Да, работа под ключ: замер, изготовление, доставка и установка. Материал можно заказать и без монтажа.</p></details>
+      <details><summary>Как обновляются цены?</summary><p>Цены в каталоге указаны «от» и могут меняться в акциях. Актуальную цену подтверждает менеджер в WhatsApp.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Нужен расчёт лестницы или фасада?</h2>
+    <p>Напишите в WhatsApp и пришлите фото или размеры. Менеджер подскажет материал, количество и сроки.</p>
+    <a class="btn btn-wa" data-wa="Здравствуйте! Нужен расчёт." href="#" target="_blank" rel="noopener">Написать в WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Демонстрационный сайт. Название «Каменный двор», адреса, телефон и цены вымышлены.</p>
+    <p>Образец каталога для компаний, которые продают камень. Изображения изделий схематичные.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var WA='70000000000';
+  function wa(t){return 'https://wa.me/'+WA+'?text='+encodeURIComponent(t);}
+  function fmt(n){return Math.round(n).toLocaleString('ru-RU');}
+
+  var ART={
+    vase:['0 0 60 120','<rect class="s" x="16" y="6" width="28" height="8" rx="2"/><path class="s" d="M22 14Q22 24 26 30H34Q38 24 38 14Z"/><path class="s" d="M26 30Q10 44 14 62Q16 76 24 82H36Q44 76 46 62Q50 44 34 30Z"/><rect class="s" x="24" y="82" width="12" height="8"/><path class="s" d="M20 90H40L44 104H16Z"/><rect class="s" x="12" y="104" width="36" height="10" rx="2"/>'],
+    square:['0 0 60 120','<rect class="s" x="14" y="6" width="32" height="8" rx="1"/><rect class="s" x="20" y="14" width="20" height="92"/><rect class="sd" x="16" y="34" width="28" height="6"/><rect class="sd" x="16" y="72" width="28" height="6"/><path class="ln" d="M27 46V66M33 46V66"/><rect class="s" x="14" y="106" width="32" height="8" rx="1"/>'],
+    lathe:['0 0 60 120','<rect class="s" x="16" y="6" width="28" height="8" rx="2"/><rect class="s" x="24" y="14" width="12" height="92"/><ellipse class="s" cx="30" cy="30" rx="12" ry="10"/><ellipse class="s" cx="30" cy="50" rx="8" ry="7"/><ellipse class="s" cx="30" cy="72" rx="15" ry="13"/><ellipse class="s" cx="30" cy="94" rx="9" ry="7"/><rect class="s" x="14" y="104" width="32" height="10" rx="2"/>'],
+    rail:['0 0 160 70','<path class="s" d="M6 44L148 14Q158 12 158 22V26L10 58Q2 60 4 50Z"/><path class="ln" d="M12 44L150 16"/><rect class="sd" x="26" y="55" width="9" height="11"/><rect class="sd" x="78" y="44" width="9" height="22"/><rect class="sd" x="130" y="33" width="9" height="33"/>'],
+    curve:['0 0 160 100','<path d="M16 92V52Q16 16 56 16H146" fill="none" style="stroke:var(--stone-line)" stroke-width="16" stroke-linecap="round"/><path d="M16 92V52Q16 16 56 16H146" fill="none" style="stroke:var(--stone)" stroke-width="12" stroke-linecap="round"/>'],
+    pillar:['0 0 80 120','<circle class="s" cx="40" cy="14" r="10"/><rect class="s" x="20" y="24" width="40" height="8" rx="1"/><rect class="s" x="26" y="32" width="28" height="68"/><rect class="sd" x="31" y="42" width="18" height="48"/><rect class="s" x="20" y="100" width="40" height="10" rx="1"/>'],
+    column:['0 0 80 120','<rect class="s" x="14" y="8" width="52" height="8" rx="1"/><path class="s" d="M22 16H58L53 30H27Z"/><rect class="s" x="28" y="30" width="24" height="68"/><path class="ln" d="M34 34V94M40 34V94M46 34V94"/><rect class="s" x="22" y="98" width="36" height="6"/><rect class="s" x="14" y="104" width="52" height="8" rx="1"/>'],
+    rough:['0 0 160 100','<g class="s"><rect x="8" y="8" width="40" height="24" rx="2"/><rect x="52" y="8" width="30" height="24" rx="2"/><rect x="86" y="8" width="44" height="24" rx="2"/><rect x="134" y="8" width="20" height="24" rx="2"/><rect x="8" y="36" width="26" height="26" rx="2"/><rect x="38" y="36" width="44" height="26" rx="2"/><rect x="86" y="36" width="28" height="26" rx="2"/><rect x="118" y="36" width="36" height="26" rx="2"/><rect x="8" y="66" width="44" height="26" rx="2"/><rect x="56" y="66" width="32" height="26" rx="2"/><rect x="92" y="66" width="22" height="26" rx="2"/><rect x="118" y="66" width="36" height="26" rx="2"/></g>'],
+    brick:['0 0 160 100','<g class="s"><rect x="10" y="10" width="36" height="16" rx="1"/><rect x="50" y="10" width="36" height="16" rx="1"/><rect x="90" y="10" width="36" height="16" rx="1"/><rect x="130" y="10" width="22" height="16" rx="1"/><rect x="8" y="30" width="18" height="16" rx="1"/><rect x="30" y="30" width="36" height="16" rx="1"/><rect x="70" y="30" width="36" height="16" rx="1"/><rect x="110" y="30" width="36" height="16" rx="1"/><rect x="10" y="50" width="36" height="16" rx="1"/><rect x="50" y="50" width="36" height="16" rx="1"/><rect x="90" y="50" width="36" height="16" rx="1"/><rect x="130" y="50" width="22" height="16" rx="1"/><rect x="8" y="70" width="18" height="16" rx="1"/><rect x="30" y="70" width="36" height="16" rx="1"/><rect x="70" y="70" width="36" height="16" rx="1"/><rect x="110" y="70" width="36" height="16" rx="1"/></g>'],
+    step:['0 0 160 80','<path class="sd" d="M120 34L150 18V36L120 52Z"/><path class="s" d="M20 34L50 18H150L120 34Z"/><rect class="s" x="20" y="34" width="100" height="18"/><g style="fill:var(--stone-line)" opacity=".55"><circle cx="38" cy="42" r="1"/><circle cx="60" cy="46" r="1"/><circle cx="82" cy="40" r="1"/><circle cx="104" cy="45" r="1"/><circle cx="96" cy="25" r="1"/><circle cx="70" cy="23" r="1"/></g>'],
+    sill:['0 0 160 60','<path class="sd" d="M132 30L156 20V30L132 40Z"/><path class="s" d="M12 30L36 20H156L132 30Z"/><rect class="s" x="12" y="30" width="120" height="10"/>'],
+    marble:['0 0 160 100','<rect class="s" x="20" y="12" width="120" height="76" rx="3"/><path class="ln" opacity=".8" d="M28 70Q52 52 70 58T112 40T134 26M40 84Q60 66 84 74T128 62"/><path class="ln" opacity=".5" d="M60 14Q66 34 58 48T66 86"/>']
+  };
+  function art(k){var a=ART[k];return '<svg viewBox="'+a[0]+'" aria-hidden="true">'+a[1]+'</svg>';}
+
+  var CATS=[['all','Все'],['bal','Балясины'],['rail','Перила'],['pil','Тумбы и колонны'],['clad','Облицовка'],['slab','Мрамор и гранит']];
+  var CATNAME={bal:'Балясины',rail:'Перила',pil:'Тумбы и колонны',clad:'Облицовка',slab:'Мрамор и гранит'};
+  var ITEMS=[
+    {c:'bal',n:'Балясина «Ваза»',s:'Фигурная, высота 60 см, известняк',p:3500,u:'шт',a:'vase'},
+    {c:'bal',n:'Балясина «Римская»',s:'Точёная, высота 75 см, известняк',p:4200,u:'шт',a:'lathe'},
+    {c:'bal',n:'Балясина квадратная',s:'С бандажами, высота 90 см, известняк',p:5600,u:'шт',a:'square'},
+    {c:'rail',n:'Поручень прямой',s:'Сечение 12×8 см, длина 1 м',p:6800,u:'м',a:'rail'},
+    {c:'rail',n:'Поручень радиусный',s:'Для поворота лестницы, по размерам',p:14000,u:'шт',a:'curve'},
+    {c:'pil',n:'Тумба с шаром',s:'40×40 см, высота 90 см',p:18000,u:'шт',a:'pillar'},
+    {c:'pil',n:'Колонна «Ствол»',s:'Диаметр 30 см, высота до 3 м',p:38000,u:'шт',a:'column'},
+    {c:'clad',n:'Камень «Рваный край»',s:'Облицовка фасадов и цоколя',p:7200,u:'м²',a:'rough'},
+    {c:'clad',n:'Плитка «Кирпич»',s:'Фасадная облицовка, 24×6 см',p:5900,u:'м²',a:'brick'},
+    {c:'slab',n:'Ступень гранитная',s:'120×30 см, термообработка',p:9800,u:'шт',a:'step'},
+    {c:'slab',n:'Подоконник мраморный',s:'Ширина 30 см, толщина 3 см',p:8400,u:'м',a:'sill'},
+    {c:'slab',n:'Плита мраморная',s:'Толщина 2 см, полировка',p:21000,u:'м²',a:'marble'}
+  ];
+
+  var grid=document.getElementById('grid'), chips=document.getElementById('chips'), countEl=document.getElementById('count');
+  var current='all';
+  function renderCards(){
+    var list=ITEMS.filter(function(i){return current==='all'||i.c===current;});
+    grid.innerHTML=list.map(function(i){
+      var msg=wa('Здравствуйте! Интересует: '+i.n+'. Подскажите актуальную цену и наличие.');
+      return '<article class="card"><div class="art">'+art(i.a)+'</div><div class="cbody">'
+        +'<span class="cat">'+CATNAME[i.c]+'</span><h3>'+i.n+'</h3><p class="spec">'+i.s+'</p>'
+        +'<p class="price">от '+fmt(i.p)+' ₸ <small>/ '+i.u+'</small></p>'
+        +'<a class="btn btn-line btn-sm" href="'+msg+'" target="_blank" rel="noopener">Узнать в WhatsApp</a></div></article>';
+    }).join('');
+    countEl.textContent='Показано: '+list.length+' из '+ITEMS.length;
+  }
+  CATS.forEach(function(c){
+    var b=document.createElement('button');
+    b.type='button';b.className='chip';b.textContent=c[1];b.setAttribute('aria-pressed',c[0]==='all'?'true':'false');
+    b.addEventListener('click',function(){
+      current=c[0];
+      Array.prototype.forEach.call(chips.children,function(x){x.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');renderCards();
+    });
+    chips.appendChild(b);
+  });
+  renderCards();
+
+  /* калькулятор */
+  var cType=document.getElementById('cType'), cLen=document.getElementById('cLen'), cPitch=document.getElementById('cPitch');
+  var rCount=document.getElementById('rCount'), rSum=document.getElementById('rSum'), rWa=document.getElementById('rWa');
+  var bals=ITEMS.filter(function(i){return i.c==='bal';});
+  cType.innerHTML=bals.map(function(i,k){return '<option value="'+k+'">'+i.n+', от '+fmt(i.p)+' ₸</option>';}).join('');
+  cType.value='1';
+  function calc(){
+    var item=bals[+cType.value];
+    var len=parseFloat(String(cLen.value).replace(',','.'));
+    var pitch=parseFloat(String(cPitch.value).replace(',','.'));
+    if(!(len>=0.5&&len<=200&&pitch>=8&&pitch<=30)){
+      rCount.textContent='—';rSum.textContent='—';
+      rWa.href=wa('Здравствуйте! Нужен расчёт балясин, подскажите.');return;
+    }
+    var n=Math.ceil(len*100/pitch);
+    var sum=n*item.p;
+    rCount.textContent=n+' шт';
+    rSum.textContent=fmt(sum)+' ₸';
+    rWa.href=wa('Здравствуйте! Нужен расчёт: '+item.n+', длина '+len+' м, шаг '+pitch+' см. По расчёту на сайте около '+n+' шт, от '+fmt(sum)+' ₸. Подскажите точную цену и сроки.');
+  }
+  [cType,cLen,cPitch].forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});
+  document.getElementById('calcForm').addEventListener('submit',function(e){e.preventDefault();});
+  calc();
+
+  /* работы: схематичные сцены */
+  function sceneStairs(){
+    var b='<path class="sd" d="M10 150V132H50V114H90V96H130V78H170V60H230V150Z"/>';
+    for(var i=0;i<9;i++){var x=30+i*18, yb=132-0.45*(x-30);b+='<rect class="s" x="'+(x-3)+'" y="'+(yb-34).toFixed(1)+'" width="6" height="34" rx="1"/>';}
+    b+='<path class="s" d="M24 96.7L196 19.3V26L24 103Z"/>';
+    return b;
+  }
+  function sceneFacade(){
+    var b='<rect class="sd" x="20" y="40" width="200" height="110"/>';
+    for(var r=0;r<5;r++){for(var c=0;c<6;c++){var off=r%2?18:0;b+='<rect class="s" x="'+(44+c*32-off)+'" y="'+(52+r*18)+'" width="30" height="16" rx="1"/>';}}
+    b+='<rect class="s" x="20" y="34" width="28" height="8"/><rect class="s" x="192" y="34" width="28" height="8"/><rect class="s" x="24" y="42" width="20" height="108"/><rect class="s" x="196" y="42" width="20" height="108"/>';
+    return b;
+  }
+  function sceneTerrace(){
+    var b='<rect class="s" x="14" y="70" width="22" height="70"/><rect class="s" x="204" y="70" width="22" height="70"/><circle class="s" cx="25" cy="62" r="9"/><circle class="s" cx="215" cy="62" r="9"/>';
+    for(var i=0;i<9;i++){b+='<rect class="s" x="'+(52+i*18)+'" y="88" width="8" height="42" rx="1"/>';}
+    b+='<rect class="sd" x="14" y="78" width="212" height="10" rx="2"/><rect class="sd" x="14" y="130" width="212" height="10" rx="2"/>';
+    return b;
+  }
+  var WORKS=[
+    ['Лестница с балюстрадой',sceneStairs()],
+    ['Облицовка стен и колонн',sceneFacade()],
+    ['Ограждение террасы',sceneTerrace()]
+  ];
+  document.getElementById('works-grid').innerHTML=WORKS.map(function(w){
+    return '<figure class="work"><svg viewBox="0 0 240 160" role="img" aria-label="'+w[0]+', схема">'+w[1]+'</svg><figcaption><b>'+w[0]+'</b><span>Образец. Здесь будет фото объекта.</span></figcaption></figure>';
+  }).join('');
+
+  /* ссылки WhatsApp */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-wa]'),function(a){a.href=wa(a.getAttribute('data-wa'));});
+
+  /* меню */
+  var header=document.getElementById('top'), burger=document.getElementById('burger');
+  burger.addEventListener('click',function(){
+    var o=header.classList.toggle('open');
+    burger.setAttribute('aria-expanded',o?'true':'false');
+    burger.setAttribute('aria-label',o?'Закрыть меню':'Открыть меню');
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('#menu a'),function(a){
+    a.addEventListener('click',function(){header.classList.remove('open');burger.setAttribute('aria-expanded','false');});
+  });
+})();
+</script>
+</body>
+</html>
